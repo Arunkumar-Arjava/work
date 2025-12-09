@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four</title>
+    <link rel="stylesheet" href="css/connect-four.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>CONNECT FOUR</h1>
+            <p class="subtitle">Classic Strategy Game</p>
+        </div>
+        
+        <div class="players-section">
+            <div class="player player1-info active">
+                <div class="player-avatar">🔴</div>
+                <div class="player-details">
+                    <h3 id="player1NameDisplay">Player 1</h3>
+                    <div class="score-display">
+                        <span class="score-label">Wins:</span>
+                        <span class="score-value" id="player1Score">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="vs-divider">VS</div>
+            
+            <div class="player player2-info">
+                <div class="player-avatar">🟡</div>
+                <div class="player-details">
+                    <h3 id="player2NameDisplay">Player 2</h3>
+                    <div class="score-display">
+                        <span class="score-label">Wins:</span>
+                        <span class="score-value" id="player2Score">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="current-turn" id="turnIndicator">
+            <span class="turn-icon">🔴</span>
+            <span class="turn-text">Player 1's Turn</span>
+        </div>
+
+        <div class="board-wrapper">
+            <div class="board" id="board"></div>
+        </div>
+
+        <div class="controls">
+            <button class="btn btn-reset" id="resetBtn">
+                <span>🔄</span> New Game
+            </button>
+        </div>
+    </div>
+
+    <div class="modal" id="nameModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content name-modal">
+            <h2>Enter Player Names</h2>
+            <div class="input-group">
+                <label>🔴 Player 1</label>
+                <input type="text" id="player1Name" placeholder="Enter name" maxlength="15">
+            </div>
+            <div class="input-group">
+                <label>🟡 Player 2</label>
+                <input type="text" id="player2Name" placeholder="Enter name" maxlength="15">
+            </div>
+            <button class="btn btn-primary" id="startGameBtn">Start Game</button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content win-modal">
+            <div class="confetti"></div>
+            <div class="winner-badge">
+                <div class="winner-icon" id="winnerIcon">🏆</div>
+                <h2 id="modalMessage"></h2>
+                <p class="win-subtitle" id="winSubtitle">Congratulations!</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="playAgainBtn">🎮 Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/connect-four.js"></script>
+</body>
+</html>
