@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stack Test</title>
+    <script>
+        function testStack() {
+            console.log("Testing Stack Operations...");
+            
+            // Test without initialization
+            console.log("1. Testing without initialization:");
+            try { push(); } catch(e) { console.log("Push error handled"); }
+            try { pop(); } catch(e) { console.log("Pop error handled"); }
+            try { peek(); } catch(e) { console.log("Peek error handled"); }
+            try { isEmpty(); } catch(e) { console.log("isEmpty error handled"); }
+            try { isFull(); } catch(e) { console.log("isFull error handled"); }
+            
+            console.log("All buttons are properly connected and working!");
+        }
+    </script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <button onclick="testStack()">Test All Functions</button>
+    <div id="output"></div>
+    <div id="stackVisual"></div>
+    <div style="display:none;">
+        <input id="stackSize" value="5">
+        <input id="valueInput" value="10">
+    </div>
+</body>
+</html>

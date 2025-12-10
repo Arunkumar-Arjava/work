@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Visualizer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1><i class="fas fa-layer-group"></i> Stack Visualizer</h1>
+            <!-- <p class="project-description">A Stack data structure web application with LIFO operations
+                                and real-time visualization interface.</p> -->
+        </header>
+
+        <div class="main-content">
+            <div class="control-panel">
+                <div class="init-section">
+                    <h3><i class="fas fa-cog"></i> Initialize</h3>
+                    <div class="input-row">
+                        <input type="number" id="stackSize" placeholder="Stack size" min="1" max="10">
+                        <button class="btn-primary" onclick="initStack()">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                    </div>
+                </div>
+
+                <div class="operations" id="operations">
+                    <h3><i class="fas fa-tools"></i> Operations</h3>
+                    <div class="push-section">
+                        <input type="number" id="valueInput" placeholder="Enter value">
+                        <button class="btn-success" onclick="push()">
+                            <i class="fas fa-plus"></i> Push
+                        </button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-danger" onclick="pop()">
+                            <i class="fas fa-minus"></i> Pop
+                        </button>
+                        <button class="btn-info" onclick="peek()">
+                            <i class="fas fa-eye"></i> Peek
+                        </button>
+                        <button class="btn-warning" onclick="isEmpty()">
+                            <i class="fas fa-question"></i> Empty?
+                        </button>
+                        <button class="btn-secondary" onclick="isFull()">
+                            <i class="fas fa-check"></i> Full?
+                        </button>
+                    </div>
+                </div>
+
+                <div class="status-panel">
+                    <div class="output" id="output">
+                        <i class="fas fa-info-circle"></i> Ready to start...
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization">
+                <div class="stack-container">
+                    <h3><i class="fas fa-chart-bar"></i> Stack Visualization</h3>
+                    <div class="stack-visual" id="stackVisual">
+                        <div class="empty-state">
+                            <i class="fas fa-stack-overflow"></i>
+                            <p>Initialize stack to begin</p>
+                        </div>
+                    </div>
+                    <div class="stack-info" id="stackInfo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

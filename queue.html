@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Visualizer</title>
+    <link rel="stylesheet" href="css/queue-style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1><i class="fas fa-arrow-right"></i> Queue Visualizer</h1>
+            <!-- <p class="project-description">A Queue data structure web application with FIFO operations
+                                and interactive visualization interface.</p> -->
+        </header>
+
+        <div class="main-content">
+            <div class="control-panel">
+                <div class="init-section">
+                    <h3><i class="fas fa-cog"></i> Initialize</h3>
+                    <div class="input-row">
+                        <input type="number" id="queueSize" placeholder="Queue size" min="1" max="10">
+                        <button class="btn-primary" onclick="initQueue()">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                    </div>
+                </div>
+
+                <div class="operations" id="operations">
+                    <h3><i class="fas fa-tools"></i> Operations</h3>
+                    <div class="enqueue-section">
+                        <input type="number" id="valueInput" placeholder="Enter value">
+                        <button class="btn-success" onclick="enqueue()">
+                            <i class="fas fa-plus"></i> Enqueue
+                        </button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-danger" onclick="dequeue()">
+                            <i class="fas fa-minus"></i> Dequeue
+                        </button>
+                        <button class="btn-info" onclick="peek()">
+                            <i class="fas fa-eye"></i> Peek
+                        </button>
+                        <button class="btn-warning" onclick="isEmpty()">
+                            <i class="fas fa-question"></i> Empty?
+                        </button>
+                        <button class="btn-secondary" onclick="isFull()">
+                            <i class="fas fa-check"></i> Full?
+                        </button>
+                    </div>
+                </div>
+
+                <div class="status-panel">
+                    <div class="output" id="output">
+                        <i class="fas fa-info-circle"></i> Ready to start...
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization">
+                <div class="queue-container">
+                    <h3><i class="fas fa-arrow-right"></i> Queue Visualization</h3>
+                    <div class="queue-labels">
+                        <span class="front-label">Front</span>
+                        <span class="rear-label">Rear</span>
+                    </div>
+                    <div class="queue-visual" id="queueVisual">
+                        <div class="empty-state">
+                            <i class="fas fa-arrow-right"></i>
+                            <p>Initialize queue to begin</p>
+                        </div>
+                    </div>
+                    <div class="queue-info" id="queueInfo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/queue-script.js"></script>
+</body>
+</html>
