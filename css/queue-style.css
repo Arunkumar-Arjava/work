@@ -5,33 +5,72 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #333;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .app {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     color: white;
+    animation: fadeInDown 0.6s ease-out;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-size: 3rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+header h1 i {
+    margin-right: 15px;
+    animation: slideRight 1s ease-in-out infinite alternate;
 }
 
 header p {
     font-size: 1.1rem;
-    opacity: 0.9;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+header nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 }
 
 .main-content {
@@ -43,9 +82,12 @@ header p {
 
 .control-panel {
     background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+    animation: fadeInLeft 0.6s ease-out;
+    border: 1px solid rgba(255,255,255,0.8);
 }
 
 .init-section, .operations {
@@ -53,11 +95,18 @@ header p {
 }
 
 .init-section h3, .operations h3 {
-    color: #4a5568;
-    margin-bottom: 15px;
+    color: #2d3748;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.init-section h3 i, .operations h3 i {
+    color: #667eea;
+    font-size: 1.1rem;
 }
 
 .input-row {
@@ -67,16 +116,20 @@ header p {
 
 .input-row input {
     flex: 1;
-    padding: 12px;
+    padding: 14px 16px;
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
+    background: #f8fafc;
 }
 
 .input-row input:focus {
     outline: none;
     border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
 }
 
 .enqueue-section {
@@ -87,10 +140,20 @@ header p {
 
 .enqueue-section input {
     flex: 1;
-    padding: 12px;
+    padding: 14px 16px;
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.enqueue-section input:focus {
+    outline: none;
+    border-color: #48bb78;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(72, 187, 120, 0.1);
+    transform: translateY(-1px);
 }
 
 .action-buttons {
@@ -100,17 +163,37 @@ header p {
 }
 
 button {
-    padding: 12px 20px;
+    padding: 14px 24px;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary { background: #667eea; color: white; }
@@ -121,8 +204,13 @@ button {
 .btn-secondary { background: #718096; color: white; }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 button:disabled {
@@ -136,76 +224,130 @@ button:disabled {
 }
 
 .output {
-    background: #f7fafc;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 15px;
-    min-height: 60px;
+    border-radius: 12px;
+    padding: 18px 20px;
+    min-height: 70px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     font-weight: 500;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.output i {
+    color: #667eea;
+    font-size: 1.2rem;
 }
 
 .visualization {
     background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
+    animation: fadeInRight 0.6s ease-out;
+    border: 1px solid rgba(255,255,255,0.8);
 }
 
 .queue-container h3 {
-    color: #4a5568;
-    margin-bottom: 20px;
+    color: #2d3748;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.queue-container h3 i {
+    color: #667eea;
+    font-size: 1.2rem;
 }
 
 .queue-labels {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-weight: 600;
-    color: #4a5568;
+    color: #667eea;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .queue-visual {
-    min-height: 300px;
-    border: 3px dashed #e2e8f0;
-    border-radius: 10px;
+    height: 320px;
+    border: 3px dashed #cbd5e0;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px;
-    background: #f8fafc;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
     overflow-x: auto;
+    position: relative;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.queue-visual::-webkit-scrollbar {
+    height: 8px;
+}
+
+.queue-visual::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.queue-visual::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+}
+
+.queue-visual::-webkit-scrollbar-thumb:hover {
+    background: #5568d3;
 }
 
 .empty-state {
     width: 100%;
     text-align: center;
     color: #a0aec0;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .empty-state i {
-    font-size: 3rem;
-    margin-bottom: 15px;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .queue-node {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
-    padding: 15px 20px;
-    margin-right: 10px;
-    border-radius: 8px;
+    padding: 20px 28px;
+    margin-right: 15px;
+    border-radius: 12px;
     font-weight: bold;
-    font-size: 18px;
-    min-width: 60px;
+    font-size: 20px;
+    min-width: 70px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
     position: relative;
     animation: slideIn 0.5s ease-out;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+}
+
+.queue-node:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
 }
 
 .queue-node:last-child {
@@ -215,11 +357,13 @@ button:disabled {
 .queue-node::after {
     content: '→';
     position: absolute;
-    right: -15px;
+    right: -20px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 20px;
+    font-size: 24px;
     color: #667eea;
+    font-weight: bold;
+    animation: arrowPulse 1.5s ease-in-out infinite;
 }
 
 .queue-node:last-child::after {
@@ -228,7 +372,8 @@ button:disabled {
 
 .queue-node.front {
     border: 3px solid #48bb78;
-    box-shadow: 0 0 20px rgba(72, 187, 120, 0.4);
+    box-shadow: 0 0 30px rgba(72, 187, 120, 0.6), 0 8px 20px rgba(102, 126, 234, 0.4);
+    animation: slideIn 0.5s ease-out, glow 2s ease-in-out infinite;
 }
 
 .queue-info {
@@ -239,35 +384,119 @@ button:disabled {
 }
 
 .info-item {
-    background: #f7fafc;
-    padding: 15px;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 18px;
+    border-radius: 12px;
     text-align: center;
     border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.info-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    border-color: #667eea;
 }
 
 .info-item .label {
-    font-size: 12px;
+    font-size: 11px;
     color: #718096;
     text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
 }
 
 .info-item .value {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
-    color: #4a5568;
+    color: #2d3748;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateX(-20px);
+        transform: translateX(-30px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
     }
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(72, 187, 120, 0.6), 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(72, 187, 120, 0.8), 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+}
+
+@keyframes arrowPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(10px);
     }
 }
 
@@ -288,11 +517,119 @@ button:disabled {
 }
 
 @media (max-width: 768px) {
+    .app {
+        padding: 15px;
+    }
+    
     .main-content {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .control-panel, .visualization {
+        padding: 20px;
+    }
+    
+    .action-buttons {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .queue-visual {
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    header p {
+        font-size: 0.9rem;
+    }
+    
+    .main-content {
+        gap: 15px;
+    }
+    
+    .control-panel, .visualization {
+        padding: 15px;
+        border-radius: 12px;
+    }
+    
+    .init-section h3, .operations h3, .queue-container h3 {
+        font-size: 1rem;
+    }
+    
+    .input-row, .enqueue-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .input-row input, .enqueue-section input {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .input-row button, .enqueue-section button {
+        width: 100%;
     }
     
     .action-buttons {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .queue-visual {
+        min-height: 150px;
+        padding: 15px;
+    }
+    
+    .queue-node {
+        padding: 12px 15px;
+        font-size: 16px;
+        min-width: 50px;
+    }
+    
+    .queue-node::after {
+        font-size: 16px;
+        right: -12px;
+    }
+    
+    .output {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .empty-state i {
+        font-size: 2rem;
+    }
+    
+    .queue-info {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    .info-item {
+        padding: 10px;
+    }
+    
+    .info-item .value {
+        font-size: 16px;
     }
 }

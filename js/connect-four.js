@@ -34,6 +34,7 @@ class ConnectFour {
     createBoard() {
         const boardElement = document.getElementById('board');
         boardElement.innerHTML = '';
+
         
         for (let row = 0; row < 6; row++) {
             for (let col = 0; col < 7; col++) {
